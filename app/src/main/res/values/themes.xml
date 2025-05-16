@@ -1,0 +1,54 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Fsa" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Colores de texto -->
+        <item name="android:textColor">#FFFFFF</item> <!-- Texto blanco -->
+        <item name="android:textColorPrimary">#000000</item> <!-- Texto primario blanco -->
+        <item name="android:textColorSecondary">#000000</item> <!-- Texto secundario gris claro -->
+        <item name="editTextStyle">@style/CustomEditText</item>
+
+        <!-- Colores de botones -->
+        <item name="colorPrimary">#FFFFFF</item> <!-- Color de fondo de botones primarios -->
+        <item name="colorOnPrimary">#FFFFFF</item> <!-- Color de texto en botones primarios -->
+        <item name="colorSecondary">#000000</item> <!-- Color de fondo de botones secundarios -->
+        <item name="colorOnSecondary">#000000</item> <!-- Color de texto en botones secundarios -->
+
+        <!-- Otros colores que podrían ser útiles -->
+        <item name="android:colorBackground">@color/turquesa</item> <!-- Color de fondo de la aplicación -->
+    </style>
+
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <!-- Color del texto -->
+        <item name="android:textColor">#FFFFFF</item> <!-- Texto blanco -->
+        <!-- Color del hint -->
+        <item name="android:textColorHint">#CCCCCC</item> <!-- Hint gris claro -->
+        <!-- Color del cursor -->
+        <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
+        <!-- Otros atributos de estilo como padding, bordes, etc. -->
+    </style>
+
+    <style name="CustomDatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">#000000</item>
+        <item name="colorPrimary">#000000</item> <!-- Color de fondo de botones primarios -->
+        <item name="colorOnPrimary">#000000</item> <!-- Color de texto en botones primarios -->
+        <item name="colorSecondary">#000000</item> <!-- Color de fondo de botones secundarios -->
+        <item name="colorOnSecondary">#000000</item> <!-- Color de texto en botones secundarios -->
+    </style>
+    <style name="Widget.Material3.Button.ElevatedButton">
+        <item name="android:elevation">8dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/black</item>
+        <item name="shapeAppearanceOverlay">@style/RoundedCorners</item>
+    </style>
+
+    <style name="RoundedCorners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="Theme.Fsa" parent="Base.Theme.Fsa" >
+
+    </style>
+
+</resources>

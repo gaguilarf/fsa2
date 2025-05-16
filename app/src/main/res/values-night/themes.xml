@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Fsa" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:textColor">#FFFFFF</item> <!-- Texto blanco -->
+        <item name="android:textColorPrimary">#FFFFFF</item> <!-- Texto primario blanco -->
+        <item name="android:textColorSecondary">#CCCCCC</item> <!-- Texto secundario gris claro -->
+
+        <item name="colorPrimary">#FFFFFF</item> <!-- Color de fondo de botones primarios -->
+        <item name="colorOnPrimary">#FFFFFF</item> <!-- Color de texto en botones primarios -->
+        <item name="colorSecondary">#f9d45f</item> <!-- Color de fondo de botones secundarios -->
+        <item name="colorOnSecondary">#000000</item> <!-- Color de texto en botones secundarios -->
+    </style>
+</resources>

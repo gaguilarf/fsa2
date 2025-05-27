@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "256035419872",
     "project_id": "fsa-mechanics-db049",
-    "storage_bucket": "fsa-mechanics-db049.appspot.com"
+    "storage_bucket": "fsa-mechanics-db049.firebasestorage.app"
   },
   "client": [
     {
@@ -13,6 +13,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "256035419872-gioq071brorsk7jisul9iqhbb535kjug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.molytech.fsa",
+            "certificate_hash": "07a7d864e6530482ba45c60970f0cc9ec06f6a1a"
+          }
+        },
         {
           "client_id": "256035419872-j23ut2dg26fijlfu67l3u0mdsln3v7s3.apps.googleusercontent.com",
           "client_type": 3

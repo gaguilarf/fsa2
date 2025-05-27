@@ -15,8 +15,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.molytech.fsa.R
 import com.molytech.fsa.databinding.ActivityAgregarInventarioBinding
 import java.io.File
+import androidx.core.net.toUri
 
-class agregarInventarioActivity : AppCompatActivity() {
+class AgregarInventarioActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAgregarInventarioBinding
     private lateinit var firestore: FirebaseFirestore
@@ -51,13 +52,13 @@ class agregarInventarioActivity : AppCompatActivity() {
         if (!urlImagen.isNullOrEmpty()) {
             Glide.with(this)
                 .load(urlImagen)
-                .placeholder(R.drawable.img_preview)
+                .placeholder(R.drawable.subir)
                 .error(R.drawable.ic_error)
                 .into(imgVista)
 
-            imagenCargadaUri = Uri.parse(urlImagen) // Solo se ejecuta si no es null ni vacío
+            imagenCargadaUri = urlImagen.toUri()
         } else {
-            imgVista.setImageResource(R.drawable.img_preview)
+            imgVista.setImageResource(R.drawable.subir)
         }
 
         val seleccionarImagenLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

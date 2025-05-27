@@ -57,9 +57,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
-    //cloudinary
     implementation(libs.cloudinary.android)
-    //glide
     implementation(libs.glide)
+    implementation (libs.glide.transformations)
+    implementation(libs.play.services.auth)
 
 }

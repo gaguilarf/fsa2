@@ -10,6 +10,15 @@
     android:layout_marginEnd="10dp"
     android:background="@drawable/item">
 
+    <ImageView
+        android:id="@+id/imgVista"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/rounded_image_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <TextView
         android:id="@+id/txtEstado"
         android:layout_width="15dp"
@@ -44,7 +53,7 @@
         app:autoSizeMaxTextSize="22sp"
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgVista"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -62,7 +71,7 @@
         app:autoSizeMaxTextSize="18sp"
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgVista"
         app:layout_constraintTop_toBottomOf="@id/txtNombre" />
 
     <TextView
@@ -83,6 +92,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/imgVista" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

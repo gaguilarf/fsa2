@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.molytech.fsa.R
 import com.molytech.fsa.databinding.ActivityAdministrarBinding
 import com.molytech.fsa.historial.AdminHistorialActivity
-import com.molytech.fsa.inventario.inventarioActivity
+import com.molytech.fsa.inventario.InventarioActivity
 
 class AdministrarActivity : AppCompatActivity() {
 
@@ -73,7 +73,7 @@ class AdministrarActivity : AppCompatActivity() {
         }
 
         btnInventario.setOnClickListener {
-            val intent = Intent(this, inventarioActivity::class.java)
+            val intent = Intent(this, InventarioActivity::class.java)
             startActivity(intent)
         }
 

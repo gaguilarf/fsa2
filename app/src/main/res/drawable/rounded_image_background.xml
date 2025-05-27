@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Imagen de fondo por defecto -->
+    <item
+        android:drawable="@drawable/subir"
+        android:end="8dp"
+        android:gravity="center" />
+
+    <!-- Shape con bordes redondos específicos -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Color de fondo transparente para que se vea la imagen -->
+            <solid android:color="@android:color/transparent" />
+
+            <!-- Bordes redondos: superior-izquierda e inferior-izquierda 10dp -->
+            <corners
+                android:topLeftRadius="10dp"
+                android:topRightRadius="0dp"
+                android:bottomLeftRadius="10dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+</layer-list>

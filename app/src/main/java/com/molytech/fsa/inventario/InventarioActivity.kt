@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.molytech.fsa.R
 import com.molytech.fsa.databinding.ActivityInventarioBinding
 
-class inventarioActivity : AppCompatActivity() {
+class InventarioActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInventarioBinding
     private lateinit var recyclerInventario: RecyclerView
@@ -37,11 +37,12 @@ class inventarioActivity : AppCompatActivity() {
 
         // Inicializa el adaptador
         inventarioAdapter = InventarioAdapter(items) { selectedItem ->
-            val intent = Intent(this, agregarInventarioActivity::class.java)
+            val intent = Intent(this, AgregarInventarioActivity::class.java)
             intent.putExtra("nombre", selectedItem.nombre)
             intent.putExtra("descripcion", selectedItem.descripcion)
             intent.putExtra("precio", selectedItem.precio)
             intent.putExtra("estado", selectedItem.estado)
+            intent.putExtra("imagen", selectedItem.imagen)
             addProductLauncher.launch(intent)
         }
         recyclerInventario.adapter = inventarioAdapter
@@ -65,7 +66,7 @@ class inventarioActivity : AppCompatActivity() {
 
         // Botón de agregar producto
         binding.fabAgregar.setOnClickListener {
-            val intent = Intent(this, agregarInventarioActivity::class.java)
+            val intent = Intent(this, AgregarInventarioActivity::class.java)
             addProductLauncher.launch(intent)
         }
     }
@@ -79,8 +80,9 @@ class inventarioActivity : AppCompatActivity() {
                     val descripcion = document.getString("invDes") ?: ""
                     val precio = document.getString("invPre") ?: ""
                     val estado = document.getString("invEst") ?: ""
+                    val imagen = document.getString("invUrl") ?: ""
 
-                    val item = InventarioItem(nombre, descripcion, precio, estado)
+                    val item = InventarioItem(nombre, descripcion, precio, estado, imagen)
                     items.add(item)
                 }
                 // Notifica al adaptador que los datos han cambiado

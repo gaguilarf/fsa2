@@ -34,11 +34,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".inventario.agregarInventarioActivity"
+            android:name=".inventario.AgregarInventarioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".inventario.inventarioActivity"
+            android:name=".inventario.InventarioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

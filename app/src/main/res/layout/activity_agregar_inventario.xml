@@ -5,15 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".inventario.AgregarInventarioActivity">
+    android:background="@drawable/back_general"
+    tools:context="ui.inventario.AgregarInventarioActivity">
 
     <TextView
         android:id="@+id/txtInventario"
         android:layout_width="2200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="45dp"
         android:gravity="center"
-        android:text="Agregar producto"
+        android:text="@string/agregar_producto"
         android:textStyle="bold"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +25,7 @@
         android:id="@+id/txtClickableBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:layout_marginStart="20dp"
         android:contentDescription="@string/todo"
         android:focusable="true"

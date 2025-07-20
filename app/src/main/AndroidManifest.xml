@@ -17,48 +17,48 @@
         android:theme="@style/Theme.Fsa"
         tools:targetApi="31">
         <activity
-            android:name=".servicios.VerSolicitudActivity"
+            android:name=".ui.servicios.VerSolicitudActivity"
             android:exported="false" />
         <activity
-            android:name=".historial.AdminHistorialActivity"
+            android:name=".ui.historial.AdminHistorialActivity"
             android:exported="false" />
         <activity
-            android:name=".historial.HistorialServiciosActivity"
+            android:name=".ui.historial.HistorialServiciosActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.MapActivity"
+            android:name=".ui.screens.MapActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".servicios.SolicitarServicioActivity"
+            android:name=".ui.servicios.SolicitarServicioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".inventario.AgregarInventarioActivity"
+            android:name=".ui.inventario.AgregarInventarioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".inventario.InventarioActivity"
+            android:name=".ui.inventario.InventarioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.EditarPerfilActivity"
+            android:name=".ui.screens.EditarPerfilActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.AdministrarActivity"
+            android:name=".ui.screens.AdministrarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.RegistroActivity"
+            android:name=".ui.screens.RegistroActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.RecuperarActivity"
+            android:name=".ui.screens.RecuperarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.LoginActivity"
+            android:name=".ui.screens.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".screens.MainActivity"
+            android:name=".ui.screens.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
     </application>

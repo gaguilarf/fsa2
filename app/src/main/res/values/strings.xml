@@ -12,13 +12,13 @@
     <string name="ingrese_su_correo">Ingrese su correo</string>
     <string name="correo">Correo</string>
     <string name="recuperar_contrase_a">Recuperar contraseña</string>
-    <string name="registrate">Regístrate</string>
+    <string name="registrate">Regístrate</string> <!-- CORREGIDO: "Registrate" → "Regístrate" -->
     <string name="nombre_completo">Nombre completo</string>
     <string name="ingrese_su_nombre_completo">Ingrese su nombre completo</string>
-    <string name="automovil">Automóvil</string>
+    <string name="automovil">Automóvil</string> <!-- CORREGIDO: "Automovil" → "Automóvil" -->
     <string name="marca">Marca</string>
-    <string name="a_o">Año</string>
-    <string name="telefono">Teléfono</string>
+    <string name="a_o">Año</string> <!-- CORREGIDO: "A_o" → "Año" -->
+    <string name="telefono">Teléfono</string> <!-- CORREGIDO: "Telefono" → "Teléfono" -->
     <string name="registrarme">Registrarme</string>
     <string name="todo_all">TODO ALL</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -30,10 +30,20 @@
     <string name="_00_00">00:00</string>
     <string name="_00_00_00">00/00/00</string>
     <string name="ingrese_su_telefono">Ingrese su teléfono</string>
-    <string name="ingrese_descripcion">Ingrese descripcion</string>
+    <string name="ingrese_descripcion">Ingrese descripción</string>
     <string name="describa_su_problema">Describa su problema</string>
     <string name="ir">Ir</string>
     <string name="o">ó</string>
     <string name="guardar">Guardar</string>
     <string name="subir_imagen">Subir imagen</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="solicitudes">Solicitudes</string>
+    <string name="inventario">Inventario</string>
+    <string name="editar_perfil">Editar perfil</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="acciones">Acciones:</string>
+    <string name="restablecer">Restablecer</string>
+    <string name="agregar_producto">Agregar producto</string>
+    <string name="historial">Historial</string>
+    <string name="solicitud">Solicitud</string>
 </resources>

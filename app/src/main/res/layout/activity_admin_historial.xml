@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".historial.AdminHistorialActivity">
+    android:background="@drawable/back_general"
+    tools:context="ui.historial.AdminHistorialActivity">
 
     <TextView
         android:id="@+id/txtHistorial"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="45dp"
         android:gravity="center"
         android:text="Historial"
         android:textStyle="bold"
@@ -24,7 +25,7 @@
         android:id="@+id/txtClickableBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:layout_marginStart="20dp"
         android:contentDescription="@string/todo"
         android:focusable="true"

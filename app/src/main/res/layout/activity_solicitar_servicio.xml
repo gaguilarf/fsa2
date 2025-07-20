@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".servicios.SolicitarServicioActivity">
+    android:background="@drawable/back_general"
+    tools:context="ui.servicios.SolicitarServicioActivity">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
@@ -16,7 +17,7 @@
         android:id="@+id/txtServicio"
         android:layout_width="2200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="45dp"
         android:gravity="center"
         android:text="Solicitud"
         android:textStyle="bold"
@@ -29,7 +30,7 @@
         android:id="@+id/txtClickableBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:layout_marginStart="20dp"
         android:contentDescription="@string/todo"
         android:focusable="true"

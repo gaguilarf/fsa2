@@ -5,98 +5,109 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/turquesa"
-    tools:context=".screens.RecuperarActivity">
+    android:background="@drawable/back_general"
+    tools:context=".ui.screens.RecuperarActivity">
 
-    <TextView
-        android:id="@+id/txtRecCon"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:text="@string/recuperar_contrase_a"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/txtClickableBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:contentDescription="@string/todo"
-        android:focusable="true"
-        android:src="@drawable/back_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtCorreo"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/correo"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/txtRecCon"
-        app:layout_constraintBottom_toTopOf="@id/edtEmail"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        android:fillViewport="true">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:boxStrokeColor="@color/border_color"
-        app:boxStrokeWidthFocused="2dp"
-        app:boxStrokeWidth="1dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="5dp"
-        android:hint="@string/ingrese_su_correo"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/txtCorreo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextCorreo"
-            android:textColor="@android:color/white"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/txtRecCon"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:gravity="center"
+                android:text="@string/recuperar_contrase_a"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRecuperar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Enviar Correo"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/amarillo"
-        app:layout_constraintTop_toBottomOf="@id/edtEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cornerRadius="6dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+            <ImageView
+                android:id="@+id/txtClickableBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/todo"
+                android:focusable="true"
+                android:src="@drawable/back_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/copyright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/_2024_todos_los_derechos_reservados"
-        android:paddingBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <!-- Fondo para los campos de registro -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lytRecuperar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back_login"
+                android:layout_margin="20dp"
+                android:paddingBottom="24dp"
+                android:paddingTop="16dp"
+                android:paddingHorizontal="20dp"
+                app:layout_constraintTop_toBottomOf="@id/txtRecCon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="32dp">
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/border_color"
+                    app:boxStrokeWidthFocused="2dp"
+                    app:boxStrokeWidth="1dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/ingrese_su_correo"
+                    android:textColorHint="@android:color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextCorreo"
+                        android:textColor="@android:color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRecuperar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Enviar Correo"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/amarillo"
+                app:layout_constraintTop_toBottomOf="@id/lytRecuperar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:cornerRadius="6dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/copyright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/_2024_todos_los_derechos_reservados"
+                android:paddingBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

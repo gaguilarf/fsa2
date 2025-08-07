@@ -11,7 +11,9 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -19,7 +21,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
 import com.molytech.fsa.R
 import com.molytech.fsa.databinding.ActivityVerSolicitudBinding
-import com.molytech.fsa.ui.screens.MapActivity
+import com.molytech.fsa.ui.map.MapActivity
 import com.molytech.fsa.domain.entities.SolicitudServicio
 import com.molytech.fsa.data.di.SolicitudServicioDependencyProvider
 import com.molytech.fsa.data.di.InventoryDependencyProvider
@@ -52,12 +54,11 @@ class VerSolicitudActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setupWindow()
         FirebaseApp.initializeApp(this)
-
         binding = ActivityVerSolicitudBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupWindow()
         setupViewModel()
         setupViews()
         setupMap()
@@ -75,9 +76,19 @@ class VerSolicitudActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
         }
     }
 
@@ -235,12 +246,28 @@ class VerSolicitudActivity : AppCompatActivity() {
         swtEstado.isChecked = solicitud.estado == "A"
         binding.editTextDescripcion.setText(solicitud.descripcion)
 
+        updateSwitchColor()
+
+        swtEstado.setOnCheckedChangeListener { _, isChecked ->
+            updateSwitchColor()
+        }
+
         // Configurar spinner cuando se cargue el inventario
         viewModel.inventarioItems.observe(this) { items ->
             val index = items.indexOf(solicitud.inventario)
             if (index >= 0) {
                 spnInventario.setSelection(index)
             }
+        }
+    }
+
+    private fun updateSwitchColor() {
+        if (swtEstado.isChecked) {
+            // Color turquesa cuando está activado
+            swtEstado.thumbTintList = ContextCompat.getColorStateList(this, R.color.turquesa)
+        } else {
+            // Color gris por defecto cuando está desactivado
+            swtEstado.thumbTintList = ContextCompat.getColorStateList(this, android.R.color.darker_gray)
         }
     }
 

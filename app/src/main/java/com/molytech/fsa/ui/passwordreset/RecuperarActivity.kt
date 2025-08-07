@@ -1,18 +1,18 @@
-package com.molytech.fsa.ui.screens
+package com.molytech.fsa.ui.passwordreset
 
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.FirebaseApp
 import com.molytech.fsa.data.di.PasswordResetDependencyProvider
 import com.molytech.fsa.databinding.ActivityRecuperarBinding
 import com.molytech.fsa.domain.entities.PasswordResetResult
-import com.molytech.fsa.ui.passwordreset.PasswordResetViewModel
 import kotlinx.coroutines.launch
 
 class RecuperarActivity : AppCompatActivity() {
@@ -30,14 +30,24 @@ class RecuperarActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
 
         FirebaseApp.initializeApp(this)
         binding = ActivityRecuperarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
+        }
 
         setupClickListeners()
         observeViewModel()

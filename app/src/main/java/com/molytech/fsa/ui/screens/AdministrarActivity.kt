@@ -8,7 +8,9 @@ import android.text.Editable
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -16,9 +18,10 @@ import com.molytech.fsa.R
 import com.molytech.fsa.databinding.ActivityAdministrarBinding
 import com.molytech.fsa.ui.historial.AdminHistorialActivity
 import com.molytech.fsa.ui.inventario.InventarioActivity
-import com.molytech.fsa.ui.screens.LoginActivity
-import com.molytech.fsa.ui.screens.RecuperarActivity
+import com.molytech.fsa.ui.login.LoginActivity
+import com.molytech.fsa.ui.passwordreset.RecuperarActivity
 import androidx.core.content.edit
+import com.molytech.fsa.ui.editprofile.EditarPerfilActivity
 
 class AdministrarActivity : AppCompatActivity() {
 
@@ -34,14 +37,24 @@ class AdministrarActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
 
         FirebaseApp.initializeApp(this)
         binding = ActivityAdministrarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
+        }
 
         auth = FirebaseAuth.getInstance()
 

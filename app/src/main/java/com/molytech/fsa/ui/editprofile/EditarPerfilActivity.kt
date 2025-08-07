@@ -1,4 +1,4 @@
-package com.molytech.fsa.ui.screens
+package com.molytech.fsa.ui.editprofile
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,14 +6,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.FirebaseApp
 import com.molytech.fsa.data.di.EditProfileDependencyProvider
 import com.molytech.fsa.databinding.ActivityEditarPerfilBinding
 import com.molytech.fsa.domain.entities.UpdateProfileResult
-import com.molytech.fsa.ui.editprofile.EditProfileViewModel
+import com.molytech.fsa.ui.screens.AdministrarActivity
+import com.molytech.fsa.ui.screens.MainActivity
 import kotlinx.coroutines.launch
 
 class EditarPerfilActivity : AppCompatActivity() {
@@ -34,14 +36,24 @@ class EditarPerfilActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
 
         FirebaseApp.initializeApp(this)
         binding = ActivityEditarPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
+        }
 
         // Obtener datos del usuario actual
         val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

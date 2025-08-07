@@ -46,4 +46,9 @@
     <string name="agregar_producto">Agregar producto</string>
     <string name="historial">Historial</string>
     <string name="solicitud">Solicitud</string>
+    <string name="ingrese_descripci_n">Ingrese descripción</string>
+    <string name="llamar">Llamar</string>
+    <string name="enviar_correo">Enviar Correo</string>
+    <string name="seleccionar_ubicaci_n">Seleccionar Ubicación</string>
+    <string name="solicitar_servicios">Solicitar servicios</string>
 </resources>

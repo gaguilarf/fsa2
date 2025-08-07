@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_general"
-    tools:context="ui.screens.EditarPerfilActivity">
+    tools:context=".ui.editprofile.EditarPerfilActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -189,11 +189,13 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="32dp"
                 android:backgroundTint="@color/amarillo"
-                android:text="Guardar"
+                android:text="@string/guardar"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/lytLogin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

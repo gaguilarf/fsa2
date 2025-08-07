@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/back_general"
-        tools:context=".ui.screens.LoginActivity" >
+        tools:context=".ui.login.LoginActivity" >
 
         <ImageView
             android:id="@+id/logo"
@@ -131,6 +131,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="16sp"
             app:cornerRadius="6dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/black"
             android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
@@ -148,72 +150,70 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|top"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lytLogin"
-            app:layout_constraintVertical_bias="0.0">
-
-            <TextView
-                android:id="@+id/extraRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/aun_no_tiene_cuenta" />
-
-            <TextView
-                android:id="@+id/txtClickableRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:layout_marginTop="16dp"
-                android:paddingStart="5dp"
-                android:paddingEnd="0dp"
-                android:text="@string/registrarse"
-                android:textColor="@color/amarillo" />
-
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|top"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lytLogin"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/copyright"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/_2024_todos_los_derechos_reservados"
-            android:paddingBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/txto"
+            android:id="@+id/extraRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/o"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            android:layout_marginTop="16dp"
+            android:text="@string/aun_no_tiene_cuenta" />
 
-        <ImageButton
-            android:id="@+id/btnGoogle"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/google_circular"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="8dp"
-            android:background="@null"
-            app:layout_constraintTop_toBottomOf="@id/txto"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+        <TextView
+            android:id="@+id/txtClickableRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_marginTop="16dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp"
+            android:text="@string/registrarse"
+            android:textColor="@color/amarillo" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/o"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/google_circular"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/txto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/copyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/_2024_todos_los_derechos_reservados"
+        android:paddingBottom="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

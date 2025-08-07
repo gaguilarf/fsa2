@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.MapActivity">
+    tools:context=".ui.map.MapActivity">
 
     <org.osmdroid.views.MapView
         android:id="@+id/mapFragmentView"
@@ -18,12 +18,14 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSeleccionar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/amarillo"
-        android:text="Seleccionar Ubicación"
+        android:text="@string/seleccionar_ubicaci_n"
         android:textColor="@color/black"
         app:cornerRadius="6dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

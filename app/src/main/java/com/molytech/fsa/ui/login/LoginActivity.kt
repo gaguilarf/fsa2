@@ -1,4 +1,4 @@
-package com.molytech.fsa.ui.screens
+package com.molytech.fsa.ui.login
 
 import android.content.Intent
 import android.graphics.Color
@@ -8,8 +8,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -20,7 +21,10 @@ import com.molytech.fsa.R
 import com.molytech.fsa.data.di.LoginDependencyProvider
 import com.molytech.fsa.databinding.ActivityLoginBinding
 import com.molytech.fsa.domain.entities.AuthResult
-import com.molytech.fsa.ui.login.LoginViewModel
+import com.molytech.fsa.ui.passwordreset.RecuperarActivity
+import com.molytech.fsa.ui.register.RegistroActivity
+import com.molytech.fsa.ui.screens.AdministrarActivity
+import com.molytech.fsa.ui.screens.MainActivity
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -54,14 +58,24 @@ class LoginActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
 
         FirebaseApp.initializeApp(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
+        }
 
         configureGoogleSignIn()
         setupClickListeners()

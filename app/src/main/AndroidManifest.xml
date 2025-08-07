@@ -26,7 +26,7 @@
             android:name=".ui.historial.HistorialServiciosActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.screens.MapActivity"
+            android:name=".ui.map.MapActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -42,7 +42,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.screens.EditarPerfilActivity"
+            android:name=".ui.editprofile.EditarPerfilActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -50,15 +50,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.screens.RegistroActivity"
+            android:name=".ui.register.RegistroActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.screens.RecuperarActivity"
+            android:name=".ui.passwordreset.RecuperarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.screens.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

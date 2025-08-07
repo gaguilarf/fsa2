@@ -14,9 +14,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.molytech.fsa.ui.historial.HistorialServiciosActivity
 import com.molytech.fsa.R
 import com.molytech.fsa.databinding.ActivityMainBinding
-import com.molytech.fsa.ui.screens.LoginActivity
+import com.molytech.fsa.ui.login.LoginActivity
 import androidx.core.content.edit
-import com.molytech.fsa.ui.screens.RecuperarActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.molytech.fsa.ui.editprofile.EditarPerfilActivity
+import com.molytech.fsa.ui.passwordreset.RecuperarActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,14 +35,24 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
 
         FirebaseApp.initializeApp(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
+        }
 
         auth = FirebaseAuth.getInstance()
 

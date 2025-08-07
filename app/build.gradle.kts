@@ -13,13 +13,15 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 7
-        versionName = "1.5"
+        versionName = "1.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Configuración para símbolos de depuración nativos
         ndk {
             debugSymbolLevel = "FULL"
+            // Especificar ABIs compatibles con 16 KB
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
         }
     }
 
@@ -81,6 +83,13 @@ android {
     packaging {
         jniLibs {
             useLegacyPackaging = false
+            // Excluir librerías nativas de Fresco problemáticas
+            excludes += "lib/arm64-v8a/libimagepipeline.so"
+            excludes += "lib/arm64-v8a/libnative-filters.so"
+            excludes += "lib/arm64-v8a/libnative-imagetranscoder.so"
+            excludes += "lib/armeabi-v7a/libimagepipeline.so"
+            excludes += "lib/armeabi-v7a/libnative-filters.so"
+            excludes += "lib/armeabi-v7a/libnative-imagetranscoder.so"
         }
 
         // Configurar exclusiones para optimización

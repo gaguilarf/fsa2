@@ -9,8 +9,11 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -39,13 +42,23 @@ class AgregarInventarioActivity : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = false
+        windowInsetsController.isAppearanceLightNavigationBars = false
 
         binding = ActivityAgregarInventarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                insets.left,
+                insets.top,
+                insets.right,
+                insets.bottom
+            )
+            windowInsets
+        }
 
         setupClickListeners()
         loadProductData()
@@ -56,6 +69,14 @@ class AgregarInventarioActivity : AppCompatActivity() {
         binding.txtClickableBack.setOnClickListener {
             finish()
         }
+
+        // Configurar el listener del switch desde el inicio para productos nuevos
+        binding.swtEstado.setOnCheckedChangeListener { _, isChecked ->
+            updateSwitchColor()
+        }
+
+        // Configurar color inicial del switch
+        updateSwitchColor()
 
         val seleccionarImagenLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -94,6 +115,9 @@ class AgregarInventarioActivity : AppCompatActivity() {
             binding.editTextPrecio.setText(precio)
             binding.swtEstado.isChecked = estado == "A"
 
+            // Para modo edición, actualizar color después de establecer el estado
+            updateSwitchColor()
+
             if (!urlImagen.isNullOrEmpty()) {
                 Glide.with(this)
                     .load(urlImagen)
@@ -103,7 +127,20 @@ class AgregarInventarioActivity : AppCompatActivity() {
                 imagenCargadaUri = urlImagen.toUri()
             }
         } else {
+            // Para productos nuevos, establecer estado inicial como inactivo
+            binding.swtEstado.isChecked = false
             binding.imgVista.setImageResource(R.drawable.subir)
+            // El color ya se configuró en setupClickListeners()
+        }
+    }
+
+    private fun updateSwitchColor() {
+        if (binding.swtEstado.isChecked) {
+            // Color turquesa cuando está activado
+            binding.swtEstado.thumbTintList = ContextCompat.getColorStateList(this, R.color.turquesa)
+        } else {
+            // Color gris por defecto cuando está desactivado
+            binding.swtEstado.thumbTintList = ContextCompat.getColorStateList(this, android.R.color.darker_gray)
         }
     }
 

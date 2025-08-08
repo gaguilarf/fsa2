@@ -50,12 +50,11 @@ class SolicitarServicioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setupWindow()
-        setupConfiguration()
-
         binding = ActivitySolicitarServicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupWindow()
+        setupConfiguration()
         setupViewModel()
         setupViews()
         setupMap()

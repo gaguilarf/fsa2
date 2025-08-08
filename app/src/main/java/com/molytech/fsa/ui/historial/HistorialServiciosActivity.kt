@@ -34,12 +34,11 @@ class HistorialServiciosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setupWindow()
         FirebaseApp.initializeApp(this)
-
         binding = ActivityHistorialServiciosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupWindow()
         setupViewModel()
         setupRecyclerView()
         setupActivityResultLauncher()
@@ -50,6 +49,7 @@ class HistorialServiciosActivity : AppCompatActivity() {
     }
 
     private fun setupWindow() {
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT

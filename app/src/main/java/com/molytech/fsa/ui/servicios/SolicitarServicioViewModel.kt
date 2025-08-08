@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.molytech.fsa.domain.entities.SolicitudServicio
+import com.molytech.fsa.domain.entities.InventarioItem
 import com.molytech.fsa.domain.usecases.CreateSolicitudUseCase
 import com.molytech.fsa.domain.usecases.UpdateSolicitudUseCase
 import com.molytech.fsa.domain.usecases.GetActiveInventoryUseCase
@@ -25,8 +26,8 @@ class SolicitarServicioViewModel(
     private val _successMessage = MutableLiveData<String?>()
     val successMessage: LiveData<String?> = _successMessage
 
-    private val _inventarioItems = MutableLiveData<List<String>>()
-    val inventarioItems: LiveData<List<String>> = _inventarioItems
+    private val _inventarioItems = MutableLiveData<List<InventarioItem>>()
+    val inventarioItems: LiveData<List<InventarioItem>> = _inventarioItems
 
     private val _operationCompleted = MutableLiveData<Boolean>()
     val operationCompleted: LiveData<Boolean> = _operationCompleted
@@ -38,10 +39,24 @@ class SolicitarServicioViewModel(
                 val result = getActiveInventoryUseCase()
                 result.fold(
                     onSuccess = { inventoryItems ->
-                        val itemsList = mutableListOf<String>()
-                        itemsList.add("Ninguno")
-                        inventoryItems.forEachIndexed { index, item ->
-                            itemsList.add("${index + 1}: ${item.description}       s/${item.price}")
+                        val itemsList = mutableListOf<InventarioItem>()
+                        // Agregar elemento "Ninguno" como primer item
+                        itemsList.add(InventarioItem(
+                            nombre = "Ninguno",
+                            descripcion = "",
+                            precio = "0.00",
+                            estado = "A",
+                            imagen = ""
+                        ))
+                        // Convertir items del inventario a InventarioItem
+                        inventoryItems.forEach { item ->
+                            itemsList.add(InventarioItem(
+                                nombre = item.name,
+                                descripcion = item.description ?: "",
+                                precio = item.price.toString(),
+                                estado = "A",
+                                imagen = item.imageUrl ?: ""
+                            ))
                         }
                         _inventarioItems.value = itemsList
                         _isLoading.value = false

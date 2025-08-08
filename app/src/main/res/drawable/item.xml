@@ -4,6 +4,6 @@
 
     <solid android:color="@color/gris"/> <!-- Color gris de fondo -->
 
-    <corners android:radius="16dp"/> <!-- Bordes redondeados, puedes ajustar el tamaño -->
+    <corners android:radius="10dp"/> <!-- Bordes redondeados, puedes ajustar el tamaño -->
 
 </shape>

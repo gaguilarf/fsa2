@@ -81,7 +81,7 @@ class AgregarInventarioActivity : AppCompatActivity() {
         val seleccionarImagenLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+            if (result.resultCode == RESULT_OK && result.data != null) {
                 val uri = result.data!!.data
                 imagenSeleccionadaUri = uri
                 binding.imgVista.setImageURI(uri)

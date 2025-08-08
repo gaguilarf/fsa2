@@ -5,7 +5,6 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -25,6 +24,8 @@ import com.molytech.fsa.ui.map.MapActivity
 import com.molytech.fsa.domain.entities.SolicitudServicio
 import com.molytech.fsa.data.di.SolicitudServicioDependencyProvider
 import com.molytech.fsa.data.di.InventoryDependencyProvider
+import com.molytech.fsa.domain.entities.InventarioItem
+import com.molytech.fsa.ui.adapters.InventarioSpinnerAdapter
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapEventsReceiver
 import org.osmdroid.util.GeoPoint
@@ -46,6 +47,7 @@ class SolicitarServicioActivity : AppCompatActivity() {
     private lateinit var viewModel: SolicitarServicioViewModel
     private var marker: Marker? = null
     private var editingSolicitudId: String? = null
+    private var pendingInventarioSelection: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,9 +131,17 @@ class SolicitarServicioActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.inventarioItems.observe(this) { items ->
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            val adapter = InventarioSpinnerAdapter(this, items)
             spnInventario.adapter = adapter
+
+            // Si hay una selección pendiente, aplicarla ahora
+            pendingInventarioSelection?.let { inventarioName ->
+                val index = items.indexOfFirst { it.nombre == inventarioName }
+                if (index >= 0) {
+                    spnInventario.setSelection(index)
+                }
+                pendingInventarioSelection = null // Limpiar la selección pendiente
+            }
         }
 
         viewModel.successMessage.observe(this) { message ->
@@ -204,13 +214,8 @@ class SolicitarServicioActivity : AppCompatActivity() {
             hora.setText(s_hora)
             binding.editTextDescripcion.setText(s_descripcion)
 
-            // El spinner se configurará cuando se cargue el inventario
-            viewModel.inventarioItems.observe(this) { items ->
-                val index = items.indexOf(s_inventario)
-                if (index >= 0) {
-                    spnInventario.setSelection(index)
-                }
-            }
+            // Guardar el nombre del inventario para seleccionarlo cuando se cargue la lista
+            pendingInventarioSelection = s_inventario
         }
     }
 
@@ -220,7 +225,14 @@ class SolicitarServicioActivity : AppCompatActivity() {
         val fechaSeleccionada = fecha.text.toString()
         val horaSeleccionada = hora.text.toString()
         val descripcion = binding.editTextDescripcion.text.toString()
-        val inventario = spnInventario.selectedItem.toString()
+
+        // Obtener el item seleccionado del spinner - método más explícito
+        val selectedPosition = spnInventario.selectedItemPosition
+        val inventarioSeleccionado = spnInventario.adapter.getItem(selectedPosition) as? InventarioItem
+        val inventario = inventarioSeleccionado?.nombre ?: "Ninguno"
+
+        // Log para depuración - eliminar en producción
+        println("DEBUG - Inventario seleccionado: '$inventario'")
 
         if (!viewModel.validateFields(latitud, longitud, fechaSeleccionada, horaSeleccionada, descripcion)) {
             Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -25,6 +24,7 @@ import com.molytech.fsa.ui.map.MapActivity
 import com.molytech.fsa.domain.entities.SolicitudServicio
 import com.molytech.fsa.data.di.SolicitudServicioDependencyProvider
 import com.molytech.fsa.data.di.InventoryDependencyProvider
+import com.molytech.fsa.ui.adapters.InventarioSpinnerAdapter
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapEventsReceiver
 import org.osmdroid.util.GeoPoint
@@ -50,6 +50,7 @@ class VerSolicitudActivity : AppCompatActivity() {
     private lateinit var viewModel: VerSolicitudViewModel
     private var marker: Marker? = null
     private var currentSolicitud: SolicitudServicio? = null
+    private var pendingInventarioSelection: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,9 +135,17 @@ class VerSolicitudActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.inventarioItems.observe(this) { items ->
-            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            val adapter = InventarioSpinnerAdapter(this, items)
             spnInventario.adapter = adapter
+
+            // Si hay una selección pendiente, aplicarla ahora
+            pendingInventarioSelection?.let { inventarioName ->
+                val index = items.indexOfFirst { it.nombre == inventarioName }
+                if (index >= 0) {
+                    spnInventario.setSelection(index)
+                }
+                pendingInventarioSelection = null // Limpiar la selección pendiente
+            }
         }
 
         viewModel.solicitud.observe(this) { solicitud ->
@@ -246,19 +255,16 @@ class VerSolicitudActivity : AppCompatActivity() {
         swtEstado.isChecked = solicitud.estado == "A"
         binding.editTextDescripcion.setText(solicitud.descripcion)
 
+        // Configurar color del switch según el estado
         updateSwitchColor()
 
+        // Configurar listener para cambiar color dinámicamente
         swtEstado.setOnCheckedChangeListener { _, isChecked ->
             updateSwitchColor()
         }
 
-        // Configurar spinner cuando se cargue el inventario
-        viewModel.inventarioItems.observe(this) { items ->
-            val index = items.indexOf(solicitud.inventario)
-            if (index >= 0) {
-                spnInventario.setSelection(index)
-            }
-        }
+        // Guardar el nombre del inventario para seleccionarlo cuando se cargue la lista
+        pendingInventarioSelection = solicitud.inventario
     }
 
     private fun updateSwitchColor() {
